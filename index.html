@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>5 minute timer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <h1>5 Minute Timer</h1>
+  <body style="font-family: bahnschrift">
+    <div id="timer"></div>
+    <button id="start" style="font-family: bahnschrift">Start</button>
+    <button id="stop" style="font-family: bahnschrift">Stop</button>
+    <script>
+      var timer = $('#timer');
+      var remainingTime = 300;
+      var interval;
+
+      $(function () {
+        $('#start').click(function () {
+          clearInterval(interval);
+          remainingTime = 300;
+          timer.text('5 minutes remaining');
+          interval = setInterval(function () {
+            remainingTime--;
+            if (remainingTime <= 0) {
+              clearInterval(interval);
+              timer.text("Time's up!");
+            } else {
+              timer.text(remainingTime + ' seconds remaining');
+            }
+          }, 1000);
+        });
+
+        $('#stop').click(function () {
+          clearInterval(interval);
+          timer.text('Timer stopped');
+        });
+      });
+    </script>
+  </body>
+</html>
